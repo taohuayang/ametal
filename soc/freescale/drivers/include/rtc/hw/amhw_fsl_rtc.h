@@ -272,8 +272,7 @@ am_static_inline
 void amhw_fsl_rtc_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
                                         uint32_t        value)
 {
-    p_hw_rtc->tcr |= ((value << AMHW_FSL_RTC_TCR_SHIFT) &
-                      (0XFF << AMHW_FSL_RTC_TCR_SHIFT));
+    AM_BITS_SET(p_hw_rtc->tcr, AMHW_FSL_RTC_TCR_SHIFT, 8, value);
 }
 
 /**
@@ -289,8 +288,7 @@ am_static_inline
 void amhw_fsl_rtc_compensate_interval_set (amhw_fsl_rtc_t *p_hw_rtc,
                                            uint32_t        interval)
 {
-    p_hw_rtc->tcr |= ((interval << AMHW_FSL_RTC_CIR_SHIFT) &
-                      (0XFF << AMHW_FSL_RTC_CIR_SHIFT));
+    AM_BITS_SET(p_hw_rtc->tcr, AMHW_FSL_RTC_CIR_SHIFT, 8, interval);
 }
 
 /**
@@ -306,7 +304,6 @@ uint8_t amhw_fsl_rtc_current_compensate_value_get (amhw_fsl_rtc_t *p_hw_rtc)
     return (uint8_t)((p_hw_rtc->tcr & (0xff << AMHW_FSL_RTC_TCV_SHIFT))
                       >> AMHW_FSL_RTC_TCV_SHIFT);
 }
-
 /**
  *  \brief 设置当前的校准量
  *
@@ -323,7 +320,6 @@ void amhw_fsl_rtc_current_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
                      (~(0xff << AMHW_FSL_RTC_TCV_SHIFT))))) |
                      (value << AMHW_FSL_RTC_TCV_SHIFT);
 }
-
 /**
  *  \brief 设置当前调整间歇计数器的值
  *
@@ -340,7 +336,6 @@ void amhw_fsl_rtc_current_compensate_counter_set (amhw_fsl_rtc_t *p_hw_rtc,
                      (~(0xfful << AMHW_FSL_RTC_CIC_SHIFT)))) |
                      (count << AMHW_FSL_RTC_CIC_SHIFT);
 }
-
 /**
  *  \brief 设置调整间歇和调整量
  *

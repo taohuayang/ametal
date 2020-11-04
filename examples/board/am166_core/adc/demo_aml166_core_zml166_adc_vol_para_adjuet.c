@@ -46,7 +46,7 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief CS1239校准参数获取例程
+ * \brief ZML166 24位ADC 校准参数获取例程
  */
 void demo_aml166_core_zml166_adc_vol_para_adjuet (void)
 {
@@ -66,17 +66,17 @@ void demo_aml166_core_zml166_adc_vol_para_adjuet (void)
 
     am_zlg_flash_sector_erase(ZLG116_FLASH, (1024 * FLASH_BLOCK_NUM));
 
-    am_zlg_flash_flash_program(ZLG116_FLASH,
+    am_zlg_flash_sector_program(ZLG116_FLASH,
                                PT100_PARA_SAVE_ADDRESS,
                    (uint32_t *)mem_data,
                                2);
 
-    am_zlg_flash_flash_program(ZLG116_FLASH,
+    am_zlg_flash_sector_program(ZLG116_FLASH,
                               (1024 * FLASH_BLOCK_NUM),
                    (uint32_t *)para,
                                16);
 
-    dome_zml166_adc_vol_measure_entry((void *)handle,
+    demo_zml166_adc_vol_measure_entry((void *)handle,
                                               para,
                                               AM_ZML166_ADC_PGA_1);
 }

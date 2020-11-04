@@ -27,7 +27,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
- 
+
 /**
  * \brief ADC INT 例程，通过 HW 层接口实现
  */
@@ -389,6 +389,11 @@ void demo_am116_core_microport_rs485_entry (void);
 void demo_am116_core_microport_rtc_entry (void);
 
 /**
+ * \brief MicroPort RTC_HMI中断例程，通过标准接口实现
+ */
+void demo_am116_core_microport_hmi_int_entry (void);
+
+/**
  * \brief MicroPort RX8025T 例程，通过标准接口实现
  */
 void demo_am116_core_microport_rx8025t_entry (void);
@@ -507,6 +512,36 @@ void demo_am116_core_sensor_bmg160_entry (void);
 void demo_am116_core_sensor_mmc5883ma_entry (void);
 
 /**
+ * \brief 六轴传感器查询模式例程入口
+ */
+void demo_am116_core_sensor_fxos8700cq_entry (void);
+
+/**
+ * \brief 六轴传感器触发模式例程入口
+ */
+void demo_am116_core_sensor_fxos8700cq_int_entry (void);
+
+/**
+ * \brief 气压温度传感器查询模式例程入口
+ */
+void demo_am116_core_sensor_mpl3115a2_entry (void);
+
+/**
+ * \brief 气压温度传感器触发模式例程入口
+ */
+void demo_am116_core_sensor_mpl3115a2_int_entry (void);
+
+/**
+ * \brief 磁力传感器查询模式例程入口
+ */
+void demo_am116_core_sensor_mag3110_entry (void);
+
+/**
+ * \brief 磁力传感器触发模式例程入口
+ */
+void demo_am116_core_sensor_mag3110_int_entry (void);
+
+/**
  * \brief bootloader demo例程入口
  */
 void demo_am116_core_bootloader_entry(void);
@@ -516,25 +551,40 @@ void demo_am116_core_bootloader_entry(void);
  */
 void demo_am116_core_application_entry(void);
 
-///**
-// * \brief ZSN60x LED测试程序
-// */
-//void demo_am116_zsn60x_led_test_entry();
+/**
+ * \brief ZSN603 LED测试程序
+ */
+void demo_am116_zsn603_led_test_entry(void);
 
-///**
-// * \brief ZSN60x A类卡测试程序
-// */
-//void demo_am116_zsn60x_picca_test_entry();
+/**
+ * \brief ZSN603 A类卡测试程序
+ */
+void demo_am116_zsn603_picca_test_entry(void);
 
-///**
-// * \brief ZSN60x B类卡测试程序
-// */
-//void demo_am116_zsn60x_piccb_test_entry();
+/**
+ * \brief ZSN603 B类卡测试程序
+ */
+void demo_am116_zsn603_piccb_test_entry(void);
 
-///**
-// * \brief ZSN60x 自动检测测试程序
-// */
-//void demo_am116_zsn60x_auto_detect_test_entry();
+/**
+ * \brief ZSN603 自动检测测试程序
+ */
+void demo_am116_zsn603_auto_detect_test_entry(void);
+
+/**
+ * \brief MK100 磁旋钮 例程
+ */
+void demo_am116_core_mk100_test_entry (void);
+
+/**
+ * \brief GS200 例程
+ */
+void demo_am116_core_gs200_set_baudrate_entry (void);
+
+/**
+ * \brief RS200 例程
+ */
+void demo_am116_core_rs200_test_entry (void);
 
 /**
  * \brief USBD键盘例程
@@ -555,6 +605,16 @@ void demo_zlg126_usbd_msc_entry (void);
  * \brief USBD 虚拟串口  例程
  */
 void demo_zlg126_usbd_vcom_entry (void);
+
+/**
+ * \brief 单区bootloader的测试应用程序例程
+ */
+void demo_am116_core_single_application_entry (void);
+
+/**
+ * \brief 基于串口助手的单区bootloader例程
+ */
+void demo_am116_core_single_bootloader_uart_entry (void);
 
 #ifdef __cplusplus
 }

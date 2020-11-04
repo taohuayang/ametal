@@ -54,7 +54,7 @@
 
 
 /**
- * \brief CS1239固定电压测量例程
+ * \brief ZML166  24位ADC 固定电压测量例程
  */
 void demo_aml166_core_zml166_adc_vol_measure (void)
 {
@@ -71,7 +71,7 @@ void demo_aml166_core_zml166_adc_vol_measure (void)
             para[2 * i + 1] = 0;
         }
     }
-    dome_zml166_adc_vol_measure_entry((void *)handle,
+    demo_zml166_adc_vol_measure_entry((void *)handle,
                                               para,
                                               AM_ZML166_ADC_PGA_SET_1);
 }

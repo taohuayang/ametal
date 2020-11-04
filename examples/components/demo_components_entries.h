@@ -37,9 +37,14 @@ extern "C" {
 #include "am_zm516x.h"
 #include "am_zlg9021.h"
 #include "am_zlg52810.h"
-#include "zsn60x.h"
+#include "am_mk100.h"
+#include "am_gs200.h"
+#include "am_rs200.h"
+#include "zsn603.h"
 #include "am_xmodem.h"
 #include "am_baudrate_detect.h"
+#include "am_iso7816.h"
+#include "am_fmse_a03.h"
 /**
  * \brief EP24CXX 器件例程
  *
@@ -219,36 +224,36 @@ void demo_am845_core_eeprom_entry (void);
 void demo_fm25clxx_entry(am_fm25clxx_handle_t fm25clxx_handle, int32_t test_lenth);
 
 /**
- * \brief  ZSN60x  LED测试实例程序
+ * \brief  ZSN603  LED测试实例程序
  *
- * \param[in] handle      : ZSN60X设备服务句柄
+ * \param[in] handle      : ZSN603设备服务句柄
  * \retval  no : 无返回值
  */
-void demo_zsn60x_led_test_entry (zsn60x_handle_t handle);
+void demo_zsn603_led_test_entry (zsn603_handle_t handle);
 
 /**
- * \brief  ZSN60x  A类卡激活例程
+ * \brief  ZSN603  A类卡激活例程
  *
- * \param[in] handle      : ZSN60X设备服务句柄
+ * \param[in] handle      : ZSN603设备服务句柄
  * \retval  no : 无返回值
  */
-void demo_zsn60x_picca_active_test_entry (zsn60x_handle_t handle);
+void demo_zsn603_picca_active_test_entry (zsn603_handle_t handle);
 
 /**
- * \brief  ZSN60x  B类卡激活例程
+ * \brief  ZSN603  B类卡激活例程
  *
- * \param[in] handle      : ZSN60X设备服务句柄
+ * \param[in] handle      : ZSN603设备服务句柄
  * \retval  no : 无返回值
  */
-void demo_zsn60x_piccb_active_test_entry (zsn60x_handle_t handle);
+void demo_zsn603_piccb_active_test_entry (zsn603_handle_t handle);
 
 /**
- * \brief  ZSN60x  自动检测模式例程
+ * \brief  ZSN603  自动检测模式例程
  *
- * \param[in] handle      : ZSN60X设备服务句柄
+ * \param[in] handle      : ZSN603设备服务句柄
  * \retval  no : 无返回值
  */
-void demo_zsn60x_auto_detect_test_entry(zsn60x_handle_t handle);
+void demo_zsn603_auto_detect_test_entry(zsn603_handle_t handle);
 
 /**
  * \brief xmodem接收例程
@@ -274,6 +279,85 @@ void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle);
  */
 void demo_uart_auto_baudrate_entry (am_baudrate_detect_handle_t baudrate_handle,
                                     am_uart_handle_t            uart_handle);
+
+/**
+ * \brief MK100例程
+ * \param[in] handle  MK100 服务句柄
+ * \return 无
+ */
+void demo_mk100_entry(am_mk100_handle_t handle);
+
+/**
+ * \brief GS200 模块设置波特率例程
+ * \param[in] handle  GS200设备服务句柄
+ * \return 无
+ */
+void demo_gs200_baudrate_entry (am_gs200_handle_t gs200_handle,uint32_t gs200_baudrate);
+
+/**
+ * \brief RS200 模块例程
+ * \param[in] handle  RS200设备服务句柄
+ * \return 无
+ */
+void demo_rs200_entry (am_rs200_handle_t handle);
+
+/**
+ * \brief ISO7816 接触式卡例程
+ * \param[in] iso7816_handle  ISO7816设备服务句柄
+ * \return 无
+ */
+void demo_iso7816_entry(am_iso7816_handle_t iso7816_handle);
+
+/**
+ * \brief FMSE-A03 二进制读写测试例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_binary_rw_test_entry (am_fmse_handle_t handle);
+
+/**
+ * \brief FMSE-A03 命令测试例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_cmd_test_entry (am_fmse_handle_t handle);
+
+/**
+ * \brief FMSE-A03 数据压缩例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_data_compress_test_entry (am_fmse_handle_t handle);
+
+/**
+ * \brief FMSE-A03 加解密测试例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_data_encrypt_and_decrypt_entry (am_fmse_handle_t handle);
+
+/**
+ * \brief FMSE-A03 ECC计算例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_ecc_calc_test_entry (am_fmse_handle_t handle);
+
+/**
+ * \brief FMSE-A03 密钥对生成例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \param[in] mode  ： 加密模式  0：1024RSA   1：2048RSA   2：SM2
+ * \return 无
+ */
+void demo_fmse_gen_key_pair_entry (am_fmse_handle_t handle, uint8_t mode);
+
+/**
+ * \brief FMSE-A03 RSA载入例程
+ * \param[in] handle： FMSE标准服务句柄
+ * \return 无
+ */
+void demo_fmse_rsa_load_test_entry (am_fmse_handle_t  handle);
+
 #ifdef __cplusplus
 }
 #endif

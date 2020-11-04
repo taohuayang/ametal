@@ -56,8 +56,8 @@ void am_zlg_flash_init (amhw_zlg_flash_t *p_hw_flash)
                                    AMHW_ZLG_FLASH_PGERR_FLAG    |
                                    AMHW_ZLG_FLASH_BUSY_FLAG);
 
-//    amhw_zlg_flash_set_prebuff_on(p_hw_flash, FALSE);
-//    amhw_zlg_flash_half_cycle_enable(p_hw_flash, FALSE);
+    //amhw_zlg_flash_set_prebuff_on(p_hw_flash, AM_FALSE);
+    //amhw_zlg_flash_half_cycle_enable(p_hw_flash, AM_FALSE);
 
     return;
 }
@@ -71,7 +71,7 @@ void am_zlg_flash_init (amhw_zlg_flash_t *p_hw_flash)
  * \return > 0: 执行结果, -AM_EINVAL: 输入地址过大
  */
 int32_t am_zlg_flash_sector_erase (amhw_zlg_flash_t *p_hw_flash,
-                                   uint32_t             start_addr)
+                                   uint32_t          start_addr)
 {
     if (start_addr < FALSH_ADDRESS_BASE) {
         start_addr += FALSH_ADDRESS_BASE;
@@ -108,10 +108,10 @@ int32_t am_zlg_flash_sector_erase (amhw_zlg_flash_t *p_hw_flash,
  *
  * \retval 0 实际成功写入的字数
  */
-int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
-                                    uint32_t             dst_addr,
-                                    uint32_t            *p_src,
-                                    uint32_t             size)
+int32_t am_zlg_flash_sector_program (amhw_zlg_flash_t *p_hw_flash,
+                                     uint32_t          dst_addr,
+                                     uint32_t         *p_src,
+                                     uint32_t          size)
 {
     uint32_t i;
 
@@ -136,13 +136,20 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
 
         /** 半字写入 */
         *(uint16_t *)(dst_addr + i * 4)     = (uint16_t)p_src[i];
+
+        /** 等待写入完成 */
+        while (amhw_zlg_flash_status_check(p_hw_flash,
+                                           AMHW_ZLG_FLASH_BUSY_FLAG)) {
+           ;
+        }
+
         *(uint16_t *)(dst_addr + i * 4 + 2) = (uint16_t)(p_src[i] >> 16);
+        while (amhw_zlg_flash_status_check(p_hw_flash,
+                                           AMHW_ZLG_FLASH_BUSY_FLAG)) {
+           ;
+        }
     }
 
-    while (amhw_zlg_flash_status_check(p_hw_flash,
-                                       AMHW_ZLG_FLASH_BUSY_FLAG)) {
-       ;
-    }
     for (i = 0; i < size; i++) {
 
        /** 半字写入 */
